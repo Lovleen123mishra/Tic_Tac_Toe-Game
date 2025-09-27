@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    form input{
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        text-align: center;
+        align-items: center;
+    }
+</style>
+
+<body>
+    <h1>O is user1 <br> x is user2</h1>
+    <form name="frm">
+        <input type="button" value=" "  id="n1" onclick="cl(event);">
+        <input type="button" value=" "  id="n2" onclick="cl(event);">
+        <input type="button" value=" "  id="n3" onclick="cl(event);"><br>
+
+        <input type="button" value=" "  id="n4" onclick="cl(event);">
+        <input type="button" value=" "  id="n5" onclick="cl(event);">
+        <input type="button" value=" "  id="n6" onclick="cl(event);"><br>
+
+        <input type="button" value=" "  id="n7" onclick="cl(event);">
+        <input type="button" value=" " id="n8" onclick="cl(event);">
+        <input type="button" value=" "  id="n9" onclick="cl(event);"><br>
+    </form>
+</body>
+
+<script>
+    var c = 0;
+
+    function cl(e){
+        c++;
+        if(c>8)
+        {
+         alert("Noone wins");
+        }
+        let btn = document.getElementById(e.target.id);
+         btn.value = (c % 2 == 0) ? "X" : "O";
+         btn.disabled = true;
+         s(); 
+    }
+    
+    function s(){
+        var a=document.getElementById("n1").value;
+        var b=document.getElementById("n2").value;
+        var c=document.getElementById("n3").value;
+        var d=document.getElementById("n4").value;
+        var e=document.getElementById("n5").value;
+        var f=document.getElementById("n6").value;
+        var g=document.getElementById("n7").value;
+        var h=document.getElementById("n8").value;
+        var i=document.getElementById("n9").value;
+        
+           let wins = [
+            [a,b,c],[d,e,f],[g,h,i],
+            [a,d,g],[b,e,h],[c,f,i], 
+            [a,e,i],[c,e,g]          
+            ];
+        
+            for (let combo of wins) {
+            if (combo[0] !== " " && combo[0] === combo[1] && combo[1] === combo[2]) {
+                alert((combo[0] === "X" ? "User2" : "User1") + " is winner!");
+                disableAll();
+                return;
+            }
+         }
+    }
+
+    function disableAll(){
+        for(let i=1; i<=9; i++){
+            document.getElementById("n"+i).disabled = true;
+        }
+    }
+</script>
+</html>
